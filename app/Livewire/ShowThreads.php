@@ -8,13 +8,29 @@ use Livewire\Component;
 
 class ShowThreads extends Component
 {
-    public $categorias;
-    public $threads;
+    public $search = '';
+    public $category = '';
     public function render()
     {
-        $this->categorias = Category::all();
-        $this->threads = Thread::all();
+        $categorias = Category::all();
 
-        return view('livewire.show-threads');
+        $query = Thread::query();
+        $query->where('title', 'like', "%$this->search%");
+            
+        if($this->category){
+            $query->where('category_id', $this->category);
+        }
+
+        $threads=$query->withCount('replies')->get();
+
+        return view('livewire.show-threads',[
+            'categorias' => $categorias,
+            'threads' => $threads
+        ]);
     }
+
+    public function filterByCategory($category){
+        $this->category = $category;
+    }
+
 }
