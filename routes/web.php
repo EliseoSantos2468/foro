@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\ShowThread;
+use App\Livewire\ShowThreads;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,7 +13,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    Route::get('/dashboard', ShowThreads::class)
+        ->name('dashboard');
+
+    Route::get('/thread/{thread}', ShowThread::class)
+        ->name('thread');
 });

@@ -24,7 +24,7 @@
 
             <!-- Page Content -->
             <main>
-                @livewire('show-threads')
+                {{$slot}}
             </main>
         </div>
 

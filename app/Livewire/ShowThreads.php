@@ -4,8 +4,11 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Thread;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
+
+#[Layout('layouts.app')]
 class ShowThreads extends Component
 {
     public $search = '';
