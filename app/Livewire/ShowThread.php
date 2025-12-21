@@ -24,6 +24,7 @@ class ShowThread extends Component
     }
 
     public function postReply(){
+        
         // validar
         $this->validate([
             'body' => 'required'
